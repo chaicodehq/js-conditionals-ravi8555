@@ -15,7 +15,7 @@
  *
  * Examples:
  *   - Income $8,000   → Tax = $0 (all in bracket 1)
- *   - Income $20,000  → Tax = 10% of ($20,000 - $10,000) = $1,000
+ *   - Income $20,000  → Tax = 10% of ($20,000 - $10,000) = $1,000;
  *   - Income $50,000  → Tax = $2,000 + 20% of ($50,000 - $30,000) = $6,000
  *   - Income $100,000 → Tax = $2,000 + $8,000 + 30% of ($100,000 - $70,000) = $19,000
  *
@@ -26,5 +26,24 @@
  * @returns {number} Total tax amount owed
  */
 export function calculateTax(income) {
+  if(income <= 0){
+    return 0
+  }
+  let taxAmt
+  if(income <= 10000){
+    taxAmt = 0
+  }else if(income <= 30000){
+    let slab1 = income - 10000
+    taxAmt = (slab1 * 10) / 100 
+  }else if(income <= 50000){
+    let slab2 = income - 30000;
+    taxAmt = 2000 + (slab2 * 20) / 100
+  }else if(income >= 70000){
+    let slab3 = income - 70000;
+    taxAmt = 10000 + (slab3 * 30) / 100
+  }
+  return taxAmt
   // Your code here
 }
+console.log(calculateTax(70000));
+

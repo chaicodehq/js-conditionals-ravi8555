@@ -23,5 +23,43 @@
  * @returns {number} The ticket price, or -1 for invalid input
  */
 export function getTicketPrice(age, isWeekend) {
-  // Your code here
+  const children = age <= 12;   
+  const teens = age <= 17;
+  const audult = age <= 59;
+  const senior = age >= 60;
+  
+  
+  if(age < 0 || typeof age !=="number" || isNaN(age)){
+    return -1
+  }
+  
+  let basePrice;
+
+  if(children){
+     basePrice = 8
+  }else if(teens){
+    basePrice = 12
+  }else if(audult){
+    basePrice = 15
+  }else if(senior){
+    basePrice = 10
+  }
+
+  if(isWeekend === true){
+    return basePrice +3
+  }
+  return basePrice;
+  
+ 
 }
+console.log(getTicketPrice(10, false));  // 8 (child, weekday)
+console.log(getTicketPrice(10, true));   // 11 (child, weekend)
+console.log(getTicketPrice(15, false));  // 12 (teen, weekday)
+console.log(getTicketPrice(15, true));   // 15 (teen, weekend)
+console.log(getTicketPrice(30, false));  // 15 (adult, weekday)
+console.log(getTicketPrice(30, true));   // 18 (adult, weekend)
+console.log(getTicketPrice(65, false));  // 10 (senior, weekday)
+console.log(getTicketPrice(65, true));   // 13 (senior, weekend)
+console.log(getTicketPrice(-5, false));  // -1 (invalid age)
+console.log(getTicketPrice("abc", false)); // -1 (invalid age)
+

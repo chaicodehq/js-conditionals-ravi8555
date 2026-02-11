@@ -33,5 +33,65 @@
  * @returns {{ allowed: boolean, message: string }}
  */
 export function canBorrowBook(memberAge, hasValidCard, overdueBooks) {
+//   if(memberAge < 6){
+//     return {
+//       allowed : false,
+//       message : "Too young - must be at least 6 years old"
+//     }
+//   }else if(!hasValidCard){
+//     return {
+//       allowed : false,
+//       message: "Invalid library card - please renew at the front desk"
+//     }
+//   }else if(overdueBooks > 0){
+//     return {
+//       allowed : false,
+//       message :`Please return your ${overdueBooks} overdue book(s) first`
+//     }
+    
+//   }
+//   if(memberAge > 6 && hasValidCard && overdueBooks > 0){
+//     return {
+//       allowed : false,
+//       message : `Please return your ${overdueBooks} overdue book(s) first`
+//     }
+//   }
+//  if(memberAge >= 6 && hasValidCard && overdueBooks <= 0){
+//     return {
+//       allowed : true,
+//        message : "You may borrow up to 3 books"
+//     }
+//   }
+
+if(memberAge < 6){
+    return {
+      allowed : false,
+      message : "Too young - must be at least 6 years old"
+    }
+  }
+  if(!hasValidCard){
+    return {
+      allowed : false,
+      message: "Invalid library card - please renew at the front desk"
+    }
+  }
+  if(overdueBooks > 0){
+    return {
+      allowed : false,
+      message :`Please return your ${overdueBooks} overdue book(s) first`
+    }
+    
+  }
+  return {
+    allowed : true,
+    message : "You may borrow up to 3 books"
+  }
+  
+ 
+
   // Your code here
 }
+console.log("canBorrowBook =>", canBorrowBook(30, false, 1 ));
+console.log("canBorrowBook ==>", canBorrowBook(65, true, 0 ));
+console.log("canBorrowBook ===>", canBorrowBook(40, true, 5 ));
+console.log("canBorrowBook ====>", canBorrowBook(6, true, 0 ));
